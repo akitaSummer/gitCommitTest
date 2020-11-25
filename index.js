@@ -68,7 +68,7 @@ if (/^(doc:)/.test(commitMsgs[0].content)) {
     }
     execSync(`git add .`)
         // git commit -m "doc: version: 1.0.1,description: this is a test"
-    execSync(`git commit -m "${commitMsgs[0].content.replace(/^doc:\n/, 'Doc: ').replace(/\n/g, '')}"`)
+    execSync(`git commit -m "${commitMsgs[0].content.replace(/\n/g, '').replace(/^doc:/, 'Doc:')}"`)
 } else {
     console.log('no doc')
 }
