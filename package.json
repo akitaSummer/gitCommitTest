@@ -1,7 +1,15 @@
 {
-  "name": "gitCommitTest",
-  "version": "1.0.0",
-  "main": "index.js",
-  "author": "akitasummer <644171127@qq.com>",
-  "license": "MIT"
+    "name": "gitCommitTest",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "akitasummer <644171127@qq.com>",
+    "license": "MIT",
+    "devDependencies": {
+        "husky": "^4.3.0"
+    },
+    "husky": {
+        "hooks": {
+            "post-commit": "node index.js"
+        }
+    }
 }
