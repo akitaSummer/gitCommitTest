@@ -44,7 +44,7 @@ const commitMsgs = msgsStr
 if (/^(doc:)/.test(commitMsgs[0].content)) {
     const content = {}
         // 'doc:\nversion: 1.0.1,\ndescription: this is a test\n\n' -> 'version: 1.0.1,description: this is a test' -> { version: '1.0.1', description: 'this is a test' }
-    commitMsgs[0].content.replace(/^doc: /, '').replace(/\n/g, '').split(',').forEach((item) => {
+    commitMsgs[0].content.replace(/\n/g, '').replace(/^doc:/, '').split(',').forEach((item) => {
         if (!item) return
         const [key, value] = item.split(':').map(i => i.trim())
         content[key] = value
@@ -66,7 +66,8 @@ if (/^(doc:)/.test(commitMsgs[0].content)) {
     } else {
         execSync(`git update-ref -d HEAD`)
     }
-    // git commit -m "doc: version: 1.0.1,description: this is a test"
+    execSync(`git add .`)
+        // git commit -m "doc: version: 1.0.1,description: this is a test"
     execSync(`git commit -m "${commitMsgs[0].content.replace(/^doc:\n/, 'Doc: ').replace(/\n/g, '')}"`)
 } else {
     console.log('no doc')
